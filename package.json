@@ -4,5 +4,8 @@
   "description": "Grab historical card activity from trello",
   "main": "run.js",
   "author": "chrisshaw",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "node-trello": "^1.3.0"
+  }
 }
