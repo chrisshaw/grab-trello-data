@@ -1,0 +1,8 @@
+{
+  "name": "grab-trello-data",
+  "version": "0.0.1",
+  "description": "Grab historical card activity from trello",
+  "main": "run.js",
+  "author": "chrisshaw",
+  "license": "MIT"
+}
