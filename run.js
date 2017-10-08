@@ -12,27 +12,22 @@ const run = () => {
             `/1/boards/${productBoardId}/actions`,
             { fields: "date,type,memberCreator,data", memberCreator_fields: "username", filter: "updateCard:idList", actions_entities: true },
             (err, data) => {
-                if (err) {
-                    console.log(err.toString())
-                    return err
-                } else {
-                    // console.log(JSON.stringify(data, null, 4))
-                    const csvData = data.map( action => {
-                        return {
-                            timestamp: action.date,
-                            card: action.data.card.name,
-                            endList: action.data.listBefore.name,
-                            startList: action.data.listAfter.name,
-                            teamMember: action.memberCreator.username
-                        }
-                    })
-                    // const csv = json2csv({ data: csvData })
-                    console.log(csvData)
-                    // fs.writeFile(`${__dirname}/movesToLists.csv`, csv, (err) => {
-                    //     if (err) throw err
-                    //     console.log('Success.')
-                    // })
-                }
+                if (err) throw err
+                const csvData = data.map( action => {
+                    return {
+                        timestamp: action.date,
+                        card: action.data.card.name,
+                        endList: action.data.listBefore.name,
+                        startList: action.data.listAfter.name,
+                        teamMember: action.memberCreator.username
+                    }
+                })
+                const csv = json2csv({ data: csvData })
+                console.log(csvData)
+                fs.writeFile(`${__dirname}/movesToLists.csv`, csv, (err) => {
+                    if (err) throw err
+                    console.log('Success.')
+                })
             }
         )
     }
