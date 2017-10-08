@@ -15,9 +15,10 @@ const getListActivity = id => {
             const csvData = data.map( action => {
                 return {
                     timestamp: action.date,
+                    cardId: action.data.card.id,
                     card: action.data.card.name,
-                    endList: action.data.listBefore.name,
-                    startList: action.data.listAfter.name,
+                    startList: action.data.listBefore.name,
+                    endList: action.data.listAfter.name,
                     teamMember: action.memberCreator.username
                 }
             })
